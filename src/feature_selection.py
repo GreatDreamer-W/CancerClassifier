@@ -54,6 +54,7 @@ def genetic_algorithm(individual_size, train_data, train_label):
     print(child1)
     print(child2)
 
+
     selected = tools.selBest([child1, child2, ind1, ind2], 2)
     print(child1 in selected)
     print(child2 in selected)
