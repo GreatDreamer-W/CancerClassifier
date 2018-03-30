@@ -1,33 +1,24 @@
+import numpy
+from sklearn.model_selection import cross_val_score
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
 
 
-def svm(train_data, train_label, test_data, test_label):
-    svc = SVC()
-    svc.fit(train_data, train_label)
-    distance = svc.decision_function(train_data)
-    print(svc.score(train_data, train_label))
-    sum = 0
-    count = 0
-    for i in distance:
-        if i > 0:
-            count += 1
-            sum += i
-    print(sum / count)
-    sum = 0
-    count = 0
-    for i in distance:
-        if i < 0:
-            count += 1
-            sum += i
-    print(sum / count)
-    print(distance)
-    # print(svc.get_params())
-    # return test_result
+# def svm(train_data, train_label, test_data, test_label):
+#     svc = SVC(kernel="poly")
+#     svc.fit(train_data[:], train_label)
+#     return svc.score(test_data.reshape(1, -1), test_label.reshape(1, -1))
 
 
-def knn(train_data, train_label, test_data):
-    neigh = KNeighborsClassifier(n_neighbors=3)
-    neigh.fit(train_data, train_label)
-    test_result = neigh.predict(test_data)
-    return test_result
+def svm(data, target):
+    svc = SVC(kernel="sigmoid")
+    scores = cross_val_score(svc, data, target, cv=72)
+    print(scores)
+    print(numpy.mean(scores))
+
+
+def knn(train_data, train_label, test_data, test_label, attributes):
+    knn = KNeighborsClassifier(n_neighbors=3)
+    knn.fit(train_data[:, attributes], train_label)
+    print(knn.score(train_data[:, attributes], train_label))
+    print(knn.score(test_data[:, attributes], test_label))

@@ -10,6 +10,7 @@
       <w>preprocessing</w>
       <w>scaler</w>
       <w>srtp</w>
+      <w>tournsize</w>
       <w>yirui</w>
     </words>
   </dictionary>
