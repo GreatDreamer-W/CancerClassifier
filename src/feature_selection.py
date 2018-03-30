@@ -1,5 +1,4 @@
-from operator import attrgetter
-from random import sample, choice
+from random import sample
 
 import numpy as np
 from deap import creator, base, tools, algorithms
